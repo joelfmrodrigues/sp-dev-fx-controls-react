@@ -3,7 +3,7 @@ import styles from './ControlsTest.module.scss';
 import { IControlsTestProps, IControlsTestState } from './IControlsTestProps';
 import { FileTypeIcon, IconType, ApplicationType, ImageSize } from '../../../FileTypeIcon';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/components/Dropdown';
-import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/components/Button';
+import { PrimaryButton, DefaultButton, Button } from 'office-ui-fabric-react/lib/components/Button';
 import { DialogType } from 'office-ui-fabric-react/lib/components/Dialog';
 import { Placeholder } from '../../../Placeholder';
 import { ListView, IViewField, SelectionMode, GroupOrder, IGrouping } from '../../../ListView';
@@ -224,7 +224,8 @@ export default class ControlsTest extends React.Component<IControlsTestProps, IC
       richTextValue: null,
       canMovePrev: false,
       canMoveNext: true,
-      currentCarouselElement: this.carouselElements[0]
+      currentCarouselElement: this.carouselElements[0],
+      clearTreeViewSelection: false,
     };
 
     this._onIconSizeChange = this._onIconSizeChange.bind(this);
@@ -1054,8 +1055,10 @@ export default class ControlsTest extends React.Component<IControlsTestProps, IC
             defaultSelectedKeys={['R2', '6']}
             onExpandCollapse={this.onExpandCollapseTree}
             onSelect={this.onItemSelected}
-          // onRenderItem={this.renderCustomTreeItem}
+            // onRenderItem={this.renderCustomTreeItem}
+            clearSelection={this.state.clearTreeViewSelection}
           />
+          <PrimaryButton onClick={() => { this.setState({ clearTreeViewSelection: true }); }}>Clear selection</PrimaryButton>
 
         </div>
 
@@ -1080,6 +1083,7 @@ export default class ControlsTest extends React.Component<IControlsTestProps, IC
 
   private onItemSelected(items: ITreeItem[]) {
     console.log("items selected: " + items.length);
+    //this.setState({ resetTreeView: false });
   }
 
   private renderCustomTreeItem(item: ITreeItem): JSX.Element {

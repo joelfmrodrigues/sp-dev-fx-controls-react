@@ -167,6 +167,21 @@ export class TreeView extends React.Component<ITreeViewProps, ITreeViewState> {
     }
   }
 
+  public componentWillReceiveProps(nextProps: ITreeViewProps): void {
+    const {
+      items,
+      defaultSelectedKeys,
+      selectChildrenIfParentSelected,
+      clearSelection
+    } = nextProps;
+    if (defaultSelectedKeys || clearSelection) {
+      const selectedItems = clearSelection ? [] : this.getSelectedItems(items, defaultSelectedKeys, selectChildrenIfParentSelected);
+      this.setState({
+        activeItems: selectedItems
+      });
+    }
+  }
+
   /**
    * Default React render method
    */

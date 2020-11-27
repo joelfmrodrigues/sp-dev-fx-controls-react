@@ -45,7 +45,10 @@ export interface ITreeViewProps {
    * Keys of items selected by default
    */
   defaultSelectedKeys?: string[];
-
+  /**
+   * Clear selected items
+   */
+  clearSelection?: boolean;
   /**
    * Callback function called after a item is expanded / collapsed.
    * @argument item The expanded / collapsed item.

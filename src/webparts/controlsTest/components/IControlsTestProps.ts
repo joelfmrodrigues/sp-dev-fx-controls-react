@@ -27,6 +27,6 @@ export interface IControlsTestState {
   currentCarouselElement: JSX.Element;
   canMovePrev: boolean;
   canMoveNext: boolean;
-
   filePickerResult?: IFilePickerResult;
+  clearTreeViewSelection?: boolean;
 }
